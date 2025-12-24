@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection | MediAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container upload-container">
+        
+        <div class="page-header">
+            <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            <h1 style="color: var(--primary-brain)">Brain Tumor Analysis</h1>
+            <p style="color: var(--text-light)">Upload an MRI scan to generate a diagnostic report.</p>
+        </div>
+
+        <div class="glass-card">
+            <form id="upload-form" action="/brain" method="POST" enctype="multipart/form-data">
+                
+                <div class="drop-zone">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <p>Drag & Drop MRI image here or <span style="color: var(--primary-brain); font-weight: 600;">Browse</span></p>
+                    <input type="file" name="file" accept="image/*" required>
+                </div>
+
+                <div id="preview-container" class="preview-container">
+                    <img id="preview-image" class="preview-image" src="" alt="Image Preview">
+                </div>
+
+                <button type="submit" class="submit-btn brain-theme-btn">
+                    <div class="spinner"></div>
+                    <span class="btn-text">Analyze Scan</span>
+                </button>
+
+            </form>
+            <button type="button" id="retry-upload-btn" class="retry-btn brain-theme-btn-retry">
+                <i class="fa-solid fa-rotate-left"></i> Retry Upload
+            </button>
+            {% if prediction %}
+            <div id="results-modal" class="modal-overlay active">
+                <div class="modal-content glass-card">
+                    <button class="modal-close" id="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+
+                    <div class="results-section">
+                        <h2 style="font-weight: 700; margin-bottom: 1.5rem;"><i class="fa-solid fa-clipboard-check"></i> Final Analysis Report</h2>
+                        
+                        <div class="result-card">
+                            <div>
+                                <span class="card-desc">Detected Condition</span>
+                                <h2 style="color: var(--text-dark);">{{ prediction | upper }}</h2> 
+                            </div>
+                            <div class="text-right">
+                                <span class="card-desc">Confidence</span>
+                                <div class="confidence-score">{{ confidence }}%</div>
+                            </div>
+                        </div>
+
+                        <div class="image-comparison">
+                            <div class="cmp-img">
+                                <span class="cmp-label">Original MRI Input</span>
+                                <img src="data:image/png;base64,{{ original_img }}" alt="Original">
+                            </div>
+                            <div class="cmp-img">
+                                <span class="cmp-label">Grad-CAM Heatmap </span>
+                                <img src="data:image/png;base64,{{ gradcam_img }}" alt="AI Analysis">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

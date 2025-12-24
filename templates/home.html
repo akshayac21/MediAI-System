@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediAI - Medical Diagnostics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header class="hero-section">
+            <h1 class="hero-title"><i class="fa-solid fa-heart-pulse"></i> MediAI System</h1>
+            <p class="hero-subtitle">Advanced Artificial Intelligence for rapid detection of Brain Tumors and Retinal Diseases. Fast, accurate, and secure.</p>
+        </header>
+
+        <div class="options-grid">
+            <a href="/brain" class="glass-card option-card brain-theme">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h2 class="card-title">Brain Tumor Detection</h2>
+                <p class="card-desc">Analyze MRI scans using Deep Learning to identify tumors and map affected regions.</p>
+            </a>
+
+            <a href="/eye" class="glass-card option-card eye-theme">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h2 class="card-title">Retina Disease Detection</h2>
+                <p class="card-desc">Process OCT/Fundus images to detect diabetic retinopathy and other ocular conditions.</p>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

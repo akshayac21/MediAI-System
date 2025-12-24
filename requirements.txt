@@ -1,0 +1,8 @@
+flask
+torch
+torchvision
+numpy
+pillow
+matplotlib
+tqdm
+medmnist

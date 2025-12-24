@@ -282,6 +282,6 @@ This project is intended for educational and research purposes only. It is not c
 
 Akshay A C
 
-MediAI System – Medical Image Analysis Using Explainable AI
+
 
 
